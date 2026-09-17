@@ -1,14 +1,27 @@
 :root {
   --blue-sky: #f0f9ff;
   --deep-pink: #ca167c;
+  --gray-light: #969090;
   --font-primary: var(--font-inter), Arial, sans-serif;
 }
 
+.bg-blue-sky {
+  background-color: var(--blue-sky);
+}
 body {
   font-family: var(--font-primary);
 }
 
 .font-extralight {
+  font-weight: 200;
+}
+
+.font-italic {
+  font-style: italic;
+}
+
+.font-extralight-italic {
+  font-style: italic;
   font-weight: 200;
 }
 
@@ -22,4 +35,58 @@ body {
 
 .font-black {
   font-weight: 900;
+}
+
+.font-black-italic {
+  font-style: italic;
+  font-weight: 900;
+}
+
+.header-search {
+  border-radius: 10px;
+  width: 100%;
+  max-width: 100%;
+  padding-left: 48px !important;
+  padding-right: 48px !important;
+}
+
+.header-search-form {
+  position: relative;
+  width: 456px;
+  max-width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.search-submit {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  z-index: 1;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  place-items: center;
+  transform: translateY(-50%);
+}
+
+.search-submit img {
+  width: 20px;
+  height: 20px;
+}
+.header-search::placeholder {
+  color: var(--gray-light);
 }
