@@ -120,6 +120,44 @@ body {
   color: #fff;
 }
 
+.typing_loader {
+  position: absolute;
+  top: calc(100% + 24px);
+  left: calc(50% - 24px);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgb(255 255 255);
+  box-shadow:
+    12px 0 0 0 rgb(255 255 255 / 20%),
+    24px 0 0 0 rgb(255 255 255 / 20%);
+  animation: typing 1s infinite linear;
+}
+
+@keyframes typing {
+  0%,
+  100% {
+    background-color: rgb(255 255 255);
+    box-shadow:
+      12px 0 0 0 rgb(255 255 255 / 20%),
+      24px 0 0 0 rgb(255 255 255 / 20%);
+  }
+
+  25% {
+    background-color: rgb(255 255 255 / 40%);
+    box-shadow:
+      12px 0 0 0 rgb(255 255 255),
+      24px 0 0 0 rgb(255 255 255 / 20%);
+  }
+
+  75% {
+    background-color: rgb(255 255 255 / 40%);
+    box-shadow:
+      12px 0 0 0 rgb(255 255 255 / 20%),
+      24px 0 0 0 rgb(255 255 255);
+  }
+}
+
 .card-search-user {
   position: absolute;
   top: 100%;
