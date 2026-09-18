@@ -51,6 +51,7 @@ body {
 }
 
 .header-search {
+  font-size: 0.8rem;
   border-radius: 10px;
   width: 100%;
   max-width: 100%;
@@ -106,6 +107,17 @@ body {
 .search-submit img {
   width: 20px;
   height: 20px;
+}
+
+.search-feedback {
+  position: absolute;
+
+  top: calc(100% + 8px);
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  font-size: 0.875rem;
+  color: #fff;
 }
 
 .card-search-user {
