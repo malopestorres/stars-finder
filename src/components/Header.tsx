@@ -1,18 +1,26 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { FormEvent } from "react";
 import CardSearchUser from "./CardSearchUser";
 import SearchBackdrop from "./SearchBackdrop";
 
 export default function Header() {
   const [isSearchFocus, setIsSearchFocus] = useState(false);
+  const [isSearchCardVisible, setIsSearchCardVisible] = useState(false);
   const searchFormRef = useRef<HTMLFormElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const isActiveFocus = isSearchFocus ? "active" : "";
 
   function closeSearch() {
     setIsSearchFocus(false);
+    setIsSearchCardVisible(false);
     searchInputRef.current?.blur();
+  }
+
+  function handleSearchSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setIsSearchCardVisible(true);
   }
 
   useEffect(() => {
@@ -56,6 +64,7 @@ export default function Header() {
             ref={searchFormRef}
             role="search"
             className={`header-search-form ${isActiveFocus}`}
+            onSubmit={handleSearchSubmit}
           >
             <img
               className="search-icon"
@@ -82,7 +91,7 @@ export default function Header() {
                 aria-hidden="true"
               />
             </button>
-            {isSearchFocus ? <CardSearchUser /> : null}
+            {isSearchCardVisible ? <CardSearchUser /> : null}
           </form>
         </div>
       </div>
