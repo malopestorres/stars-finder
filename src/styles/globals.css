@@ -3,6 +3,13 @@
   --deep-pink: #ca167c;
   --gray-light: #969090;
   --font-primary: var(--font-inter), Arial, sans-serif;
+  --header-height: 120px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-height: 86px;
+  }
 }
 
 .bg-blue-sky {
@@ -93,7 +100,7 @@ body {
 
 .hero-banner {
   background-color: #faf2f2;
-  height: 100dvh;
+  height: calc(100dvh - var(--header-height));
 }
 
 .hero-banner h1 {
@@ -111,4 +118,26 @@ body {
   color: #fafafa;
   width: 281px;
   height: 48px;
+}
+
+.home-content-card {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(90deg, #c084fc, #db2777) border-box;
+}
+
+.home-content-card h5 {
+  font-size: 1.25rem;
+}
+
+.card-title-highlight {
+  background: linear-gradient(90deg, #c084fc, #db2777);
+  background-clip: text;
+  color: transparent;
+}
+
+.home-content-card h5 {
+  font-size: 20px;
 }
