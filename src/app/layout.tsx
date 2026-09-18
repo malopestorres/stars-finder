@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
 import { Inter } from "next/font/google";
-import Header from "./components/Header";
+import Header from "../components/Header";
 
 export const metadata: Metadata = {
   title: "Stars Finder",
