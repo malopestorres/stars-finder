@@ -1,63 +1,49 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import type { FormEvent } from "react";
-import type { GitHubUser } from "../types";
+import type { GitHubUser, SearchState } from "../types";
 import CardSearchUser from "./CardSearchUser";
 import SearchBackdrop from "./SearchBackdrop";
 
 export default function Header() {
-  const [isSearchFocus, setIsSearchFocus] = useState(false);
-  const [isSearchCardVisible, setIsSearchCardVisible] = useState(false);
-  const [isSearching, setIsSearching] = useState(false);
-  const [searchError, setSearchError] = useState("");
-  const [searchedUser, setSearchedUser] = useState<GitHubUser | null>(null);
+  const [search, setSearch] = useState<SearchState>({
+    isFocus: false,
+    status: "idle",
+    user: null,
+  });
   const searchFormRef = useRef<HTMLFormElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const isActiveFocus = isSearchFocus ? "active" : "";
 
-  function closeSearch() {
-    setIsSearchFocus(false);
-    setIsSearchCardVisible(false);
-    setSearchError("");
+  const closeSearch = useCallback(() => {
+    setSearch({ isFocus: false, status: "idle", user: null });
+    searchFormRef.current?.reset();
     searchInputRef.current?.blur();
-  }
+  }, []);
 
   async function handleSearchSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const username = formData.get("username")?.toString().trim();
 
-    if (!username) {
-      return;
-    }
+    if (!username) return;
 
-    setIsSearching(true);
-    setIsSearchCardVisible(false);
-    setSearchError("");
+    setSearch((prev) => ({ ...prev, status: "loading" }));
 
     try {
       const { data } = await axios.get<GitHubUser>(
         `/api/users/${encodeURIComponent(username)}`,
       );
 
-      setSearchedUser(data);
-      setSearchError("");
-      setIsSearchCardVisible(true);
+      setSearch((prev) => ({ ...prev, status: "success", user: data }));
     } catch {
-      setSearchedUser(null);
-      setIsSearchCardVisible(false);
-      setSearchError("Usuário não encontrado.");
-    } finally {
-      setIsSearching(false);
+      setSearch((prev) => ({ ...prev, status: "error", user: null }));
     }
   }
 
   useEffect(() => {
-    if (!isSearchFocus) {
-      return;
-    }
+    if (!search.isFocus) return;
 
     function handlePointerDown(event: PointerEvent) {
       const target = event.target as Node;
@@ -80,11 +66,11 @@ export default function Header() {
       document.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isSearchFocus]);
+  }, [closeSearch, search.isFocus]);
 
   return (
     <header className="bg-blue-sky">
-      <SearchBackdrop isVisible={isSearchFocus} />
+      <SearchBackdrop isVisible={search.isFocus} />
 
       <div className="container">
         <div className="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 p-3 p-md-4">
@@ -94,7 +80,7 @@ export default function Header() {
           <form
             ref={searchFormRef}
             role="search"
-            className={`header-search-form ${isActiveFocus}`}
+            className={`header-search-form ${search.isFocus ? "active" : ""}`}
             onSubmit={handleSearchSubmit}
           >
             <img
@@ -111,16 +97,18 @@ export default function Header() {
               type="search"
               placeholder="digite um username. ex:ryanflorence"
               onFocus={() => {
-                setIsSearchFocus(true);
-                setIsSearchCardVisible(false);
-                setSearchError("");
+                setSearch((prev) => ({
+                  ...prev,
+                  isFocus: true,
+                  status: "idle",
+                }));
               }}
             />
             <button
               className="search-submit"
               type="submit"
               aria-label="Pesquisar username"
-              disabled={isSearching}
+              disabled={search.status === "loading"}
             >
               <img
                 src="/images/icon-arrow-search.svg"
@@ -128,16 +116,18 @@ export default function Header() {
                 aria-hidden="true"
               />
             </button>
-            {isSearching ? (
+            {search.status === "loading" ? (
               <div className="typing_loader" role="status">
                 <span className="visually-hidden">Buscando usuário</span>
               </div>
             ) : null}
-            {isSearchCardVisible && searchedUser ? (
-              <CardSearchUser user={searchedUser} />
+            {search.status === "success" && search.user ? (
+              <CardSearchUser user={search.user} onNavigate={closeSearch} />
             ) : null}
-            {searchError ? (
-              <p className="search-feedback text-center">{searchError}</p>
+            {search.status === "error" ? (
+              <p className="search-feedback text-center">
+                Usuário não encontrado.
+              </p>
             ) : null}
           </form>
         </div>

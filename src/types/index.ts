@@ -1,5 +1,13 @@
 import type { ReactNode } from "react";
 
+export type SearchStatus = "idle" | "loading" | "success" | "error";
+
+export type SearchState = {
+  isFocus: boolean;
+  status: SearchStatus;
+  user: GitHubUser | null;
+};
+
 export type HomeContentCardProps = {
   children: ReactNode;
 };
@@ -21,6 +29,7 @@ export type GitHubUser = {
 
 export type CardSearchUserProps = {
   user: GitHubUser;
+  onNavigate?: () => void;
 };
 
 export type RouteProps = {
