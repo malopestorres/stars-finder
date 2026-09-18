@@ -8,3 +8,22 @@ export type GitHubUserPageProps = {
     username: string;
   }>;
 };
+
+export type GitHubUser = {
+  avatar_url: string;
+  bio: string | null;
+  followers: number;
+  following: number;
+  login: string;
+  public_repos: number;
+};
+
+export type CardSearchUserProps = {
+  user: GitHubUser;
+};
+
+export type RouteProps = {
+  params: Promise<{
+    username: string;
+  }>;
+};

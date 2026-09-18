@@ -1,11 +1,13 @@
-export default function CardSearchUser() {
+import type { CardSearchUserProps } from "../types";
+
+export default function CardSearchUser({ user }: CardSearchUserProps) {
   return (
     <article className="card-search-user shadow">
       <div className="card-search-user-profile">
         <img
           className="card-search-user-avatar"
-          src="https://github.com/malopestorres.png?size=160"
-          alt="Foto de perfil do usuário malopestorres"
+          src={user.avatar_url}
+          alt={`Foto de perfil do usuário ${user.login}`}
           width={160}
           height={160}
         />
@@ -16,12 +18,9 @@ export default function CardSearchUser() {
               alt="Ícone Github"
               aria-hidden="true"
             />
-            <h2 className="font-black-italic">malopestorres</h2>
+            <h2 className="font-black-italic">{user.login}</h2>
           </div>
-          <p>
-            Developer passionate about building open-source solutions that make
-            a real difference in people&apos;s lives.
-          </p>
+          <p>{user.bio ?? "Este usuário não adicionou uma bio."}</p>
         </div>
       </div>
 
@@ -29,15 +28,15 @@ export default function CardSearchUser() {
         <div className="card-search-user-stats">
           <span>
             <img src="/images/icon-followers.svg" alt="" aria-hidden="true" />
-            14 Seguidores
+            {user.followers} Seguidores
           </span>
           <span>
             <img src="/images/icon-following.svg" alt="" aria-hidden="true" />
-            38 seguindo
+            {user.following} seguindo
           </span>
           <span>
             <img src="/images/icon-repository.svg" alt="" aria-hidden="true" />
-            23 repos
+            {user.public_repos} repos
           </span>
         </div>
         <button type="button" className="btn card-search-user-button">

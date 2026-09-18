@@ -1,13 +1,17 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import axios from "axios";
 import type { FormEvent } from "react";
+import type { GitHubUser } from "../types";
 import CardSearchUser from "./CardSearchUser";
 import SearchBackdrop from "./SearchBackdrop";
 
 export default function Header() {
   const [isSearchFocus, setIsSearchFocus] = useState(false);
   const [isSearchCardVisible, setIsSearchCardVisible] = useState(false);
+  const [searchError, setSearchError] = useState("");
+  const [searchedUser, setSearchedUser] = useState<GitHubUser | null>(null);
   const searchFormRef = useRef<HTMLFormElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const isActiveFocus = isSearchFocus ? "active" : "";
@@ -15,12 +19,32 @@ export default function Header() {
   function closeSearch() {
     setIsSearchFocus(false);
     setIsSearchCardVisible(false);
+    setSearchError("");
     searchInputRef.current?.blur();
   }
 
-  function handleSearchSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSearchSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setIsSearchCardVisible(true);
+    const formData = new FormData(event.currentTarget);
+    const username = formData.get("username")?.toString().trim();
+
+    if (!username) {
+      return;
+    }
+
+    try {
+      const { data } = await axios.get<GitHubUser>(
+        `/api/users/${encodeURIComponent(username)}`,
+      );
+
+      setSearchedUser(data);
+      setSearchError("");
+      setIsSearchCardVisible(true);
+    } catch {
+      setSearchedUser(null);
+      setIsSearchCardVisible(false);
+      setSearchError("Usuário não encontrado.");
+    }
   }
 
   useEffect(() => {
@@ -76,9 +100,14 @@ export default function Header() {
               ref={searchInputRef}
               className="form-control font-extralight-italic shadow-sm header-search p-2"
               id="search"
+              name="username"
               type="search"
-              placeholder="digite um username"
-              onFocus={() => setIsSearchFocus(true)}
+              placeholder="digite um username. ex:ryanflorence"
+              onFocus={() => {
+                setIsSearchFocus(true);
+                setIsSearchCardVisible(false);
+                setSearchError("");
+              }}
             />
             <button
               className="search-submit"
@@ -91,7 +120,12 @@ export default function Header() {
                 aria-hidden="true"
               />
             </button>
-            {isSearchCardVisible ? <CardSearchUser /> : null}
+            {isSearchCardVisible && searchedUser ? (
+              <CardSearchUser user={searchedUser} />
+            ) : null}
+            {searchError ? (
+              <p className="search-feedback text-center">{searchError}</p>
+            ) : null}
           </form>
         </div>
       </div>
