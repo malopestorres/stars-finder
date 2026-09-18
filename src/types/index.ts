@@ -39,3 +39,20 @@ export type RouteProps = {
     username: string;
   }>;
 };
+
+export type GitHubRepository = {
+  id: number;
+  name: string;
+  full_name: string;
+  description: string | null;
+  html_url: string;
+  stargazers_count: number;
+  forks_count: number;
+  language: string | null;
+  updated_at: string;
+};
+
+export type CardRepositoryProps = {
+  repository: GitHubRepository;
+  username: string;
+};
