@@ -1,11 +1,16 @@
 import Link from "next/link";
 import CardSearchUser from "@/components/CardSearchUser";
-import { getGitHubUser } from "@/lib/github";
-import { GitHubUserPageProps } from "@/types";
+import RepoList from "@/components/RepoList";
+import { getGitHubUser, getGitHubUserRepos } from "@/lib/github";
+import type { GitHubUserPageProps } from "@/types";
 
 export default async function GitHubUserPage({ params }: GitHubUserPageProps) {
   const { username } = await params;
-  const user = await getGitHubUser(username);
+
+  const [user, repos] = await Promise.all([
+    getGitHubUser(username),
+    getGitHubUserRepos(username),
+  ]);
 
   return (
     <main className="container py-4">
@@ -16,6 +21,8 @@ export default async function GitHubUserPage({ params }: GitHubUserPageProps) {
       </div>
 
       <CardSearchUser user={user} variant="full" />
+
+      <RepoList repositories={repos} username={username} />
     </main>
   );
 }
