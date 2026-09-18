@@ -99,7 +99,8 @@ body {
 }
 
 .hero-banner {
-  background-color: #faf2f2;
+  background: url("/images/bg-mask.svg") #faf2f2 no-repeat center;
+  background-size: contain;
   height: calc(100dvh - var(--header-height));
 }
 
@@ -110,6 +111,7 @@ body {
   max-width: 100%;
 
 @media (min-width: 768px) {
+}
   .hero-banner h1 {
     font-size: 4rem;
   }
@@ -117,7 +119,7 @@ body {
 }
 .hero-banner .hero-highlight {
   color: var(--deep-pink);
-}
+
 
 .button-cta {
   font-size: 1rem;
