@@ -58,6 +58,10 @@ body {
 }
 
 .header-search-form {
+
+.header-search-form.active {
+  z-index: 11;
+}
   position: relative;
   width: 456px;
   max-width: 100%;
@@ -99,6 +103,24 @@ body {
 }
 
 .hero-banner {
+
+.search-backdrop {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  padding: 0;
+  cursor: default;
+  background-color: var(--deep-pink);
+  border: 0;
+}
+
+.search-backdrop:not(.show) {
+  pointer-events: none;
+}
+
+.search-backdrop.show {
+  opacity: 0.9;
+}
   background: url("/images/bg-mask.svg") #faf2f2 no-repeat center;
   background-size: contain;
   height: calc(100dvh - var(--header-height));
