@@ -66,6 +66,10 @@ body {
   z-index: 11;
 }
 
+.header-search-form.active .header-search {
+  border-radius: 10px 10px 0 0;
+}
+
 .header-search-form {
   position: relative;
   width: 456px;
@@ -106,82 +110,98 @@ body {
 
 .card-search-user {
   position: absolute;
-  top: calc(100% + 16px);
+  top: 100%;
   right: 0;
-  width: min(912px, calc(100vw - 32px));
-  padding: 48px 44px 0;
+  width: 100%;
+  padding: 16px 22px 0;
   text-align: left;
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: 0 0 10px 10px;
 }
 
 .card-search-user-profile {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
 }
 
 .card-search-user-avatar {
   flex-shrink: 0;
-  width: 160px;
-  height: 160px;
+  width: 64px;
+  height: 64px;
   object-fit: cover;
   border-radius: 50%;
 }
 
+.card-search-user-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.card-search-user-title img {
+  width: 20px;
+  height: 20px;
+}
+
 .card-search-user h2 {
-  margin: 0 0 20px;
-  font-size: 2.25rem;
+  margin: 0;
+  font-size: 1.75rem;
 }
 
 .card-search-user p {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 0.6875rem;
   color: var(--gray-light);
 }
 
 .card-search-user-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  margin-top: 36px;
+  justify-content: flex-start;
+  gap: 16px;
+  margin: 16px -22px 0 0;
+  padding-left: 22px;
 }
 
 .card-search-user-stats {
   display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
+  flex-wrap: nowrap;
+  gap: 16px;
+  margin-right: auto;
 }
 
 .card-search-user-stats span {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
-  gap: 12px;
-  font-size: 1.125rem;
+  gap: 8px;
+  font-size: 0.6875rem;
 }
 
 .card-search-user-stats img {
-  width: 20px;
-  height: 20px;
+  width: 14px;
+  height: 14px;
 }
 
 .card-search-user-button {
-  align-self: stretch;
-  min-width: 190px;
-  padding: 16px 24px;
-  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-left: auto;
+  min-width: 94px;
+  padding: 8px 12px;
+  font-size: 0.6875rem;
   font-weight: 800;
   color: #fff;
   background: var(--text-highlight);
   border: 0;
-  border-radius: 20px 0;
+  border-radius: 16px 0 10px 0;
 }
 
 @media (max-width: 767px) {
   .card-search-user {
     padding: 28px 24px 0;
-    border-radius: 16px;
+    border-radius: 0 0 10px 10px;
   }
 
   .card-search-user-profile {
@@ -190,17 +210,20 @@ body {
   }
 
   .card-search-user-avatar {
-    width: 96px;
-    height: 96px;
+    width: 64px;
+    height: 64px;
   }
 
   .card-search-user h2 {
-    margin-bottom: 12px;
     font-size: 1.75rem;
   }
 
+  .card-search-user-title {
+    margin-bottom: 12px;
+  }
+
   .card-search-user p {
-    font-size: 1rem;
+    font-size: 0.6875rem;
   }
 
   .card-search-user-footer {
@@ -211,7 +234,7 @@ body {
   .card-search-user-button {
     min-height: 56px;
     margin: 0 -24px;
-    border-radius: 16px 0;
+    border-radius: 16px 0 10px 0;
   }
 }
 

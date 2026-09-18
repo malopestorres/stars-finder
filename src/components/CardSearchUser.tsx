@@ -5,15 +5,22 @@ export default function CardSearchUser() {
         <img
           className="card-search-user-avatar"
           src="https://github.com/malopestorres.png?size=160"
-          alt="Foto de perfil de malopestorres"
+          alt="Foto de perfil do usuário malopestorres"
           width={160}
           height={160}
         />
         <div>
-          <h2 className="font-black-italic">malopestorres</h2>
+          <div className="card-search-user-title">
+            <img
+              src="/images/icon-github.svg"
+              alt="Ícone Github"
+              aria-hidden="true"
+            />
+            <h2 className="font-black-italic">malopestorres</h2>
+          </div>
           <p>
-            Developer passionate about building open-source solutions that make a
-            real difference in people&apos;s lives.
+            Developer passionate about building open-source solutions that make
+            a real difference in people&apos;s lives.
           </p>
         </div>
       </div>
@@ -21,27 +28,15 @@ export default function CardSearchUser() {
       <footer className="card-search-user-footer">
         <div className="card-search-user-stats">
           <span>
-            <img
-              src="/images/icon-followers.svg"
-              alt=""
-              aria-hidden="true"
-            />
+            <img src="/images/icon-followers.svg" alt="" aria-hidden="true" />
             14 Seguidores
           </span>
           <span>
-            <img
-              src="/images/icon-following.svg"
-              alt=""
-              aria-hidden="true"
-            />
+            <img src="/images/icon-following.svg" alt="" aria-hidden="true" />
             38 seguindo
           </span>
           <span>
-            <img
-              src="/images/icon-repository.svg"
-              alt=""
-              aria-hidden="true"
-            />
+            <img src="/images/icon-repository.svg" alt="" aria-hidden="true" />
             23 repos
           </span>
         </div>
