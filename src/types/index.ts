@@ -12,6 +12,7 @@ export type GitHubUserPageProps = {
 export type GitHubUser = {
   avatar_url: string;
   bio: string | null;
+  email: string | null;
   followers: number;
   following: number;
   login: string;
