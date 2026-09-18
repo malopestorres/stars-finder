@@ -21,6 +21,7 @@ export default function CardSearchUser({ user }: CardSearchUserProps) {
             <h2 className="font-black-italic">{user.login}</h2>
           </div>
           <p>{user.bio ?? "Este usuário não adicionou uma bio."}</p>
+          <p>{user.email ?? "Este usuário não adicionou um e-mail público"}</p>
         </div>
       </div>
 
