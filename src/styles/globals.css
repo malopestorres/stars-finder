@@ -1,6 +1,7 @@
 :root {
   --blue-sky: #f0f9ff;
   --deep-pink: #ca167c;
+  --text-highlight: linear-gradient(90deg, #c084fc, #db2777);
   --gray-light: #969090;
   --font-primary: var(--font-inter), Arial, sans-serif;
   --header-height: 120px;
@@ -163,7 +164,7 @@ body {
 }
 
 .card-title-highlight {
-  background: linear-gradient(90deg, #c084fc, #db2777);
+  background: var(--text-highlight);
   background-clip: text;
   color: transparent;
 }
