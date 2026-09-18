@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import CardSearchUser from "./CardSearchUser";
 import SearchBackdrop from "./SearchBackdrop";
 
 export default function Header() {
@@ -81,6 +82,7 @@ export default function Header() {
                 aria-hidden="true"
               />
             </button>
+            {isSearchFocus ? <CardSearchUser /> : null}
           </form>
         </div>
       </div>
