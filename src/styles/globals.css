@@ -90,3 +90,25 @@ body {
 .header-search::placeholder {
   color: var(--gray-light);
 }
+
+.hero-banner {
+  background-color: #faf2f2;
+  height: 100dvh;
+}
+
+.hero-banner h1 {
+  font-size: 4rem;
+  display: block;
+  width: 650px;
+  max-width: 100%;
+}
+.hero-banner .hero-highlight {
+  color: var(--deep-pink);
+}
+
+.button-cta {
+  font-size: 1rem;
+  color: #fafafa;
+  width: 281px;
+  height: 48px;
+}
