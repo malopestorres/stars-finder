@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { CardSearchUserProps } from "../types";
 
 export default function CardSearchUser({ user }: CardSearchUserProps) {
@@ -40,9 +41,9 @@ export default function CardSearchUser({ user }: CardSearchUserProps) {
             {user.public_repos} repos
           </span>
         </div>
-        <button type="button" className="btn card-search-user-button">
+        <Link href={`/${user.login}`} className="btn card-search-user-button">
           + mais info
-        </button>
+        </Link>
       </footer>
     </article>
   );
