@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { GitHubUser } from "@/types";
+import type { GitHubRepository, GitHubUser } from "@/types";
 
 const token = process.env.GITHUB_TOKEN;
 const baseURL = process.env.API_GITHUB_URL;
@@ -15,6 +15,14 @@ export const githubApi = axios.create({
 
 export async function getGitHubUser(username: string) {
   const { data } = await githubApi.get<GitHubUser>(`/users/${username}`);
+
+  return data;
+}
+
+export async function getGitHubUserRepos(username: string) {
+  const { data } = await githubApi.get<GitHubRepository[]>(
+    `/users/${username}/repos?sort=stars&per_page=100`,
+  );
 
   return data;
 }
