@@ -10,6 +10,7 @@ import SearchBackdrop from "./SearchBackdrop";
 export default function Header() {
   const [isSearchFocus, setIsSearchFocus] = useState(false);
   const [isSearchCardVisible, setIsSearchCardVisible] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const [searchError, setSearchError] = useState("");
   const [searchedUser, setSearchedUser] = useState<GitHubUser | null>(null);
   const searchFormRef = useRef<HTMLFormElement>(null);
@@ -32,6 +33,10 @@ export default function Header() {
       return;
     }
 
+    setIsSearching(true);
+    setIsSearchCardVisible(false);
+    setSearchError("");
+
     try {
       const { data } = await axios.get<GitHubUser>(
         `/api/users/${encodeURIComponent(username)}`,
@@ -44,6 +49,8 @@ export default function Header() {
       setSearchedUser(null);
       setIsSearchCardVisible(false);
       setSearchError("Usuário não encontrado.");
+    } finally {
+      setIsSearching(false);
     }
   }
 
@@ -113,6 +120,7 @@ export default function Header() {
               className="search-submit"
               type="submit"
               aria-label="Pesquisar username"
+              disabled={isSearching}
             >
               <img
                 src="/images/icon-arrow-search.svg"
@@ -120,6 +128,11 @@ export default function Header() {
                 aria-hidden="true"
               />
             </button>
+            {isSearching ? (
+              <div className="typing_loader" role="status">
+                <span className="visually-hidden">Buscando usuário</span>
+              </div>
+            ) : null}
             {isSearchCardVisible && searchedUser ? (
               <CardSearchUser user={searchedUser} />
             ) : null}
