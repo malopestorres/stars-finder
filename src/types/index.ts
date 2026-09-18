@@ -25,10 +25,12 @@ export type GitHubUser = {
   following: number;
   login: string;
   public_repos: number;
+  html_url?: string;
 };
 
 export type CardSearchUserProps = {
   user: GitHubUser;
+  variant?: "compact" | "full";
   onNavigate?: () => void;
 };
 
