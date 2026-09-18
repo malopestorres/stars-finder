@@ -1,9 +1,9 @@
 // @vitest-environment jsdom
 
 import axios from "axios";
-import { render, screen, waitFor } from "@testing-library/react";
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import Header from "../../src/components/Header";
 
 vi.mock("axios", () => ({
@@ -25,6 +25,10 @@ const searchedUser = {
 describe("Header", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   it("deve aparecer  um card com as informacões referentes ao usuário pesquisado (seguidores, seguidos, avatar, email e bio) ", async () => {
@@ -55,5 +59,32 @@ describe("Header", () => {
     expect(screen.getByText("14 Seguidores")).toBeTruthy();
     expect(screen.getByText("38 seguindo")).toBeTruthy();
     expect(screen.getByText(searchedUser.email)).toBeTruthy();
+  });
+
+  it("deve navegar para a página do usuário ao clicar no botão de mais informações", async () => {
+    const user = userEvent.setup();
+    vi.mocked(axios.get).mockResolvedValue({ data: searchedUser } as never);
+
+    render(<Header />);
+
+    const searchInput = screen.getByRole("searchbox");
+    await user.click(searchInput);
+    await user.type(searchInput, searchedUser.login);
+    await user.click(
+      screen.getByRole("button", { name: "Pesquisar username" }),
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText(searchedUser.login)).toBeTruthy();
+    });
+
+    const moreInfoLink = screen.getByRole("link", { name: "+ mais info" });
+    expect(moreInfoLink.getAttribute("href")).toBe(`/${searchedUser.login}`);
+
+    await user.click(moreInfoLink);
+
+    await waitFor(() => {
+      expect(screen.queryByText(searchedUser.login)).toBeNull();
+    });
   });
 });
