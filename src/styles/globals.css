@@ -104,10 +104,16 @@ body {
 }
 
 .hero-banner h1 {
-  font-size: 4rem;
+  font-size: 2rem;
   display: block;
   width: 650px;
   max-width: 100%;
+
+@media (min-width: 768px) {
+  .hero-banner h1 {
+    font-size: 4rem;
+  }
+}
 }
 .hero-banner .hero-highlight {
   color: var(--deep-pink);
