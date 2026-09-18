@@ -15,7 +15,6 @@ export default function Header() {
   });
   const searchFormRef = useRef<HTMLFormElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
-
   const closeSearch = useCallback(() => {
     setSearch({ isFocus: false, status: "idle", user: null });
     searchFormRef.current?.reset();
@@ -48,15 +47,11 @@ export default function Header() {
     function handlePointerDown(event: PointerEvent) {
       const target = event.target as Node;
 
-      if (!searchFormRef.current?.contains(target)) {
-        closeSearch();
-      }
+      if (!searchFormRef.current?.contains(target)) closeSearch();
     }
 
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        closeSearch();
-      }
+      if (event.key === "Escape") closeSearch();
     }
 
     document.addEventListener("pointerdown", handlePointerDown);
