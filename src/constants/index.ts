@@ -10,12 +10,15 @@ export const EVENT_POINTERDOWN = "pointerdown";
 export const EVENT_KEYDOWN = "keydown";
 export const KEY_ESCAPE = "Escape";
 
-export const inter = Inter({
-  subsets: ["latin"],
-  weight: ["200", "400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-  variable: "--font-inter",
-});
+export const inter =
+  typeof Inter === "function"
+    ? Inter({
+        subsets: ["latin"],
+        weight: ["200", "400", "500", "600", "700", "800", "900"],
+        style: ["normal", "italic"],
+        variable: "--font-inter",
+      })
+    : { variable: "--font-inter" };
 
 // Referência: https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
 export const languageColors: Record<string, string> = {
