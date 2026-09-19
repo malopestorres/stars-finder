@@ -1,24 +1,12 @@
-import { notFound } from "next/navigation";
 import ButtonBack from "@/components/ButtonBack";
 import CardSearchUser from "@/components/CardSearchUser";
 import RepoList from "@/components/RepoList";
-import { getGitHubUser, getGitHubUserRepos } from "@/lib/github";
+import { fetchUser } from "@/actions/fetchUser";
 import type { GitHubUserPageProps } from "@/types";
 
 export default async function GitHubUserPage({ params }: GitHubUserPageProps) {
   const { username } = await params;
-  let user, repos;
-
-  try {
-    [user, repos] = await Promise.all([
-      getGitHubUser(username),
-      getGitHubUserRepos(username),
-    ]);
-  } catch (error: any) {
-    if (error?.response?.status === 404) notFound();
-  
-    throw error;
-  }
+  const { user, repos } = await fetchUser(username);
 
   return (
     <main className="container py-4">

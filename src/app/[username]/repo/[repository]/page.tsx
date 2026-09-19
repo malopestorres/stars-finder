@@ -1,23 +1,14 @@
-import { notFound } from "next/navigation";
 import ButtonBack from "@/components/ButtonBack";
 import StatusItem from "@/components/StatusItem";
+import { fetchRepo } from "@/actions/fetchRepo";
 import { languageColors } from "@/lib/formatters";
-import { getGitHubRepo } from "@/lib/github";
 import type { GitHubRepoPageProps } from "@/types";
 
 export default async function RepositoryUserPage({
   params,
 }: GitHubRepoPageProps) {
   const { username, repository } = await params;
-  let repo;
-
-  try {
-    repo = await getGitHubRepo(username, repository);
-  } catch (error: any) {
-    if (error?.response?.status === 404) notFound();
-
-    throw error;
-  }
+  const repo = await fetchRepo(username, repository);
 
   const languageColor =
     (repo.language && languageColors[repo.language]) || "#9ca3af";
