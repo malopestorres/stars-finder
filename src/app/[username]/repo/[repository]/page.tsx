@@ -3,6 +3,8 @@ import CardRepositoryDetail from "@/components/CardRepositoryDetail";
 import { fetchRepo } from "@/actions/fetchRepo";
 import type { GitHubRepoPageProps } from "@/types";
 
+export const revalidate = 60;
+
 export default async function RepositoryUserPage({
   params,
 }: GitHubRepoPageProps) {

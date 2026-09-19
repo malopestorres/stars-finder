@@ -4,6 +4,8 @@ import RepoList from "@/components/RepoList";
 import { fetchUser } from "@/actions/fetchUser";
 import type { GitHubUserPageProps } from "@/types";
 
+export const revalidate = 60;
+
 export default async function GitHubUserPage({ params }: GitHubUserPageProps) {
   const { username } = await params;
   const { user, repos } = await fetchUser(username);
