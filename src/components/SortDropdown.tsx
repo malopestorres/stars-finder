@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { EVENT_MOUSEDOWN } from "@/constants";
 import type { SortDropdownProps, SortOption } from "@/types";
 
 const OPTIONS: { label: string; value: SortOption }[] = [
@@ -30,10 +31,10 @@ export default function SortDropdown({
     }
 
     if (isOpen) 
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener(EVENT_MOUSEDOWN, handleClickOutside);
     
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener(EVENT_MOUSEDOWN, handleClickOutside);
     };
   }, [isOpen]);
 

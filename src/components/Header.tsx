@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import type { FormEvent } from "react";
+import { EVENT_KEYDOWN, EVENT_POINTERDOWN, KEY_ESCAPE } from "@/constants";
 import type { GitHubUser, SearchState } from "../types";
 import CardSearchUser from "./CardSearchUser";
 import SearchBackdrop from "./SearchBackdrop";
@@ -51,15 +52,15 @@ export default function Header() {
     }
 
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") closeSearch();
+      if (event.key === KEY_ESCAPE) closeSearch();
     }
 
-    document.addEventListener("pointerdown", handlePointerDown);
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener(EVENT_POINTERDOWN, handlePointerDown);
+    document.addEventListener(EVENT_KEYDOWN, handleKeyDown);
 
     return () => {
-      document.removeEventListener("pointerdown", handlePointerDown);
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener(EVENT_POINTERDOWN, handlePointerDown);
+      document.removeEventListener(EVENT_KEYDOWN, handleKeyDown);
     };
   }, [closeSearch, search.isFocus]);
 

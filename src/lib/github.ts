@@ -1,14 +1,12 @@
 import axios from "axios";
+import { API_GITHUB_URL, GITHUB_TOKEN } from "@/constants";
 import type { GitHubRepository, GitHubUser } from "@/types";
 
-const token = process.env.GITHUB_TOKEN;
-const baseURL = process.env.API_GITHUB_URL;
-
 export const githubApi = axios.create({
-  baseURL,
+  baseURL: API_GITHUB_URL,
   headers: {
     Accept: "application/vnd.github+json",
-    ...(token && { Authorization: `Bearer ${token}` }),
+    ...(GITHUB_TOKEN && { Authorization: `Bearer ${GITHUB_TOKEN}` }),
     "X-GitHub-Api-Version": "2022-11-28",
   },
 });

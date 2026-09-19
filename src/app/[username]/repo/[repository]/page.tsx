@@ -1,7 +1,7 @@
 import ButtonBack from "@/components/ButtonBack";
 import StatusItem from "@/components/StatusItem";
 import { fetchRepo } from "@/actions/fetchRepo";
-import { languageColors } from "@/lib/formatters";
+import { languageColors } from "@/constants";
 import type { GitHubRepoPageProps } from "@/types";
 
 export default async function RepositoryUserPage({

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import StatusItem from "./StatusItem";
-import { formatTime, languageColors } from "@/lib/formatters";
+import { formatTime } from "@/lib/formatters";
+import { languageColors } from "@/constants";
 import type { CardRepositoryProps } from "@/types";
 
 export default function CardRepository({

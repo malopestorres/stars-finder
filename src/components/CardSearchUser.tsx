@@ -1,5 +1,6 @@
 import Link from "next/link";
 import StatusItem from "./StatusItem";
+import { GITHUB_BASE_URL } from "@/constants";
 import type { CardSearchUserProps } from "../types";
 
 export default function CardSearchUser({
@@ -8,7 +9,7 @@ export default function CardSearchUser({
   onNavigate,
 }: CardSearchUserProps) {
   const isFull = variant === "full";
-  const profileUrl = user.html_url ?? `https://github.com/${user.login}`;
+  const profileUrl = user.html_url ?? `${GITHUB_BASE_URL}/${user.login}`;
 
   return (
     <article
