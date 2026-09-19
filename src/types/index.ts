@@ -55,12 +55,40 @@ export type GitHubRepository = {
   html_url: string;
   stargazers_count: number;
   forks_count: number;
-  watchers_count: number;
+  watchers_count?: number;
   language: string | null;
   updated_at: string;
 };
 
 export type CardRepositoryProps = {
   repository: GitHubRepository;
+  username: string;
+};
+
+export type ButtonBackProps = {
+  href?: string;
+  className?: string;
+};
+
+export type SearchBackdropProps = {
+  isVisible: boolean;
+};
+
+export type StatusItemProps = {
+  icon?: string;
+  dotColor?: string;
+  children: ReactNode;
+  className?: string;
+};
+
+export type SortOption = "stars" | "forks" | "name-asc" | "name-desc";
+
+export type SortDropdownProps = {
+  sortBy: SortOption;
+  onSelect: (option: SortOption) => void;
+};
+
+export type RepoListProps = {
+  repositories: GitHubRepository[];
   username: string;
 };

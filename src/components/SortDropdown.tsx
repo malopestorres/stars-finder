@@ -1,13 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
-export type SortOption = "stars" | "forks" | "name-asc" | "name-desc";
-
-type SortDropdownProps = {
-  sortBy: SortOption;
-  onSelect: (option: SortOption) => void;
-};
+import type { SortDropdownProps, SortOption } from "@/types";
 
 const OPTIONS: { label: string; value: SortOption }[] = [
   { label: "Mais estrelas", value: "stars" },

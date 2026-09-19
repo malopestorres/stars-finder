@@ -1,9 +1,5 @@
 import Link from "next/link";
-
-type ButtonBackProps = {
-  href?: string;
-  className?: string;
-};
+import type { ButtonBackProps } from "@/types";
 
 export default function ButtonBack({
   href = "/",

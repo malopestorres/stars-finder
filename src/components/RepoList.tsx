@@ -2,13 +2,8 @@
 
 import { useMemo, useState } from "react";
 import CardRepository from "./CardRepository";
-import SortDropdown, { type SortOption } from "./SortDropdown";
-import type { GitHubRepository } from "@/types";
-
-type RepoListProps = {
-  repositories: GitHubRepository[];
-  username: string;
-};
+import SortDropdown from "./SortDropdown";
+import type { GitHubRepository, RepoListProps, SortOption } from "@/types";
 
 export default function RepoList({ repositories, username }: RepoListProps) {
   const [sortBy, setSortBy] = useState<SortOption>("stars");

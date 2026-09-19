@@ -1,11 +1,4 @@
-import type { ReactNode } from "react";
-
-type StatusItemProps = {
-  icon?: string;
-  dotColor?: string;
-  children: ReactNode;
-  className?: string;
-};
+import type { StatusItemProps } from "@/types";
 
 export default function StatusItem({
   icon,

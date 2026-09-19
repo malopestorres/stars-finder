@@ -1,6 +1,4 @@
-type SearchBackdropProps = {
-  isVisible: boolean;
-};
+import type { SearchBackdropProps } from "@/types";
 
 export default function SearchBackdrop({ isVisible }: SearchBackdropProps) {
   const visibleClass = isVisible ? "show" : "";
