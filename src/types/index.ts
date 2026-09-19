@@ -65,6 +65,10 @@ export type CardRepositoryProps = {
   username: string;
 };
 
+export type CardRepositoryDetailProps = {
+  repository: GitHubRepository;
+};
+
 export type ButtonBackProps = {
   href?: string;
   className?: string;
