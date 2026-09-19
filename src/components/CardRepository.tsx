@@ -19,7 +19,7 @@ export default function CardRepository({
         >
           <img
             src="/images/icon-repository.svg"
-            alt=""
+            alt="Icone do Repositório"
             aria-hidden="true"
             className="repo-card-icon"
           />

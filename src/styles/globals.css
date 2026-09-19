@@ -515,11 +515,95 @@ body {
   margin-top: 48px;
 }
 
+.repos-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
 .repos-title {
-  margin: 0 0 24px;
+  margin: 0;
   font-size: 1.875rem;
   font-style: italic;
   color: #111827;
+}
+
+.repo-sort {
+  position: relative;
+}
+
+.repo-sort-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: 0;
+  padding: 4px 0;
+  font-size: 1.25rem;
+  color: #111827;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.repo-sort-trigger:hover {
+  opacity: 0.8;
+}
+
+.repo-sort-trigger-text {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.repo-sort-value {
+  font-size: 1.25rem;
+  color: #6b7280;
+  margin-left: 1.5625rem; /* ~25px */
+}
+
+.repo-sort-icon {
+  width: 14px;
+  height: 8px;
+  transition: transform 0.2s ease;
+}
+
+.repo-sort-icon.open {
+  transform: rotate(180deg);
+}
+
+.repo-sort-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 250px;
+  background-color: #fff;
+  border: 1px solid #f3f4f6;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  z-index: 30;
+}
+
+.repo-sort-option {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  font-size: 1.25rem;
+  color: #111827;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.repo-sort-option:hover,
+.repo-sort-option.active {
+  background-color: #f0f9ff;
 }
 
 

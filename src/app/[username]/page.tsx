@@ -7,7 +7,6 @@ import type { GitHubUserPageProps } from "@/types";
 
 export default async function GitHubUserPage({ params }: GitHubUserPageProps) {
   const { username } = await params;
-
   let user, repos;
 
   try {
@@ -16,9 +15,8 @@ export default async function GitHubUserPage({ params }: GitHubUserPageProps) {
       getGitHubUserRepos(username),
     ]);
   } catch (error: any) {
-    if (error?.response?.status === 404) {
-      notFound();
-    }
+    if (error?.response?.status === 404) notFound();
+  
     throw error;
   }
 
@@ -29,7 +27,6 @@ export default async function GitHubUserPage({ params }: GitHubUserPageProps) {
       </div>
 
       <CardSearchUser user={user} variant="full" />
-
       <RepoList repositories={repos} username={username} />
     </main>
   );

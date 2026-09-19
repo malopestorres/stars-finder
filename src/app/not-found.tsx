@@ -6,7 +6,7 @@ export default function NotFound() {
       <div className="not-found-content">
         <img
           src="/images/icon-not-found.svg"
-          alt=""
+          alt="Icone Not Found"
           aria-hidden="true"
           className="not-found-icon"
           width={99}

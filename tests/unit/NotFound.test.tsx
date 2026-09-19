@@ -10,7 +10,7 @@ describe("NotFound", () => {
   });
 
   it("deve renderizar o ícone, o texto e o botão de voltar", () => {
-    render(<NotFound />);
+    const { container } = render(<NotFound />);
 
     expect(
       screen.getByText("oops! o que você está procurando não existe."),
@@ -19,7 +19,8 @@ describe("NotFound", () => {
     const backButton = screen.getByRole("link", { name: "Voltar" });
     expect(backButton.getAttribute("href")).toBe("/");
 
-    const icon = screen.getByRole("img", { hidden: true });
-    expect(icon.getAttribute("src")).toBe("/images/icon-not-found.svg");
+    const icon = container.querySelector("img.not-found-icon");
+    expect(icon).toBeTruthy();
+    expect(icon!.getAttribute("src")).toBe("/images/icon-not-found.svg");
   });
 });
