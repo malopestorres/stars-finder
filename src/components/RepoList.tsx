@@ -9,7 +9,7 @@ type RepoListProps = {
 export default function RepoList({ repositories, username }: RepoListProps) {
   return (
     <section className="repos-section" aria-label="Repositórios do usuário">
-      <h2 className="repos-title">Repositórios ({repositories.length})</h2>
+      <h2 className="repos-title font-black">Repositórios ({repositories.length})</h2>
 
       <ul className="repos-list" role="list">
         {repositories.map((repo) => (

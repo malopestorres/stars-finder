@@ -14,7 +14,7 @@ export default function CardRepository({
       <div className="repo-card-header">
         <Link
           href={`/${username}/repo/${repository.name}`}
-          className="repo-card-title"
+          className="repo-card-title font-semibold"
         >
           <img
             src="/images/icon-repository.svg"
@@ -24,6 +24,32 @@ export default function CardRepository({
           />
           <span>{repository.name}</span>
         </Link>
+
+        <a
+          href={repository.html_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="repo-card-link-external"
+        >
+          <span>{repository.html_url}</span>
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            className="repo-card-link-icon"
+          >
+            <path
+              d="M3.5 2.5H9.5V8.5M9.5 2.5L2.5 9.5"
+              stroke="currentColor"
+              strokeWidth="1.25"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </a>
       </div>
 
       {repository.description && (

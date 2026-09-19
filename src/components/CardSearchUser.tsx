@@ -68,7 +68,7 @@ export default function CardSearchUser({
                 href={profileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn card-search-user-button card-search-user-button-full"
+                className="btn card-search-user-button font-black card-search-user-button-full"
               >
                 Visitar perfil
                 <img
@@ -107,7 +107,7 @@ export default function CardSearchUser({
 
           <Link
             href={`/${user.login}`}
-            className="btn card-search-user-button"
+            className="btn font-black card-search-user-button"
             onClick={onNavigate}
           >
             + mais info
