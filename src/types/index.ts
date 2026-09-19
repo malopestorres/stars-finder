@@ -17,6 +17,13 @@ export type GitHubUserPageProps = {
   }>;
 };
 
+export type GitHubRepoPageProps = {
+  params: Promise<{
+    username: string;
+    repository: string;
+  }>;
+};
+
 export type GitHubUser = {
   avatar_url: string;
   bio: string | null;
@@ -48,6 +55,7 @@ export type GitHubRepository = {
   html_url: string;
   stargazers_count: number;
   forks_count: number;
+  watchers_count: number;
   language: string | null;
   updated_at: string;
 };

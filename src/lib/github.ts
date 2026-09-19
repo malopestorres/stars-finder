@@ -26,3 +26,11 @@ export async function getGitHubUserRepos(username: string) {
 
   return data;
 }
+
+export async function getGitHubRepo(username: string, repository: string) {
+  const { data } = await githubApi.get<GitHubRepository>(
+    `/repos/${username}/${repository}`,
+  );
+
+  return data;
+}
