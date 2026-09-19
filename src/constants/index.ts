@@ -1,5 +1,3 @@
-import { Inter } from "next/font/google";
-
 export const GITHUB_BASE_URL = "https://github.com";
 
 export const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
@@ -9,16 +7,6 @@ export const EVENT_MOUSEDOWN = "mousedown";
 export const EVENT_POINTERDOWN = "pointerdown";
 export const EVENT_KEYDOWN = "keydown";
 export const KEY_ESCAPE = "Escape";
-
-export const inter =
-  typeof Inter === "function"
-    ? Inter({
-        subsets: ["latin"],
-        weight: ["200", "400", "500", "600", "700", "800", "900"],
-        style: ["normal", "italic"],
-        variable: "--font-inter",
-      })
-    : { variable: "--font-inter" };
 
 // Referência: https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
 export const languageColors: Record<string, string> = {
@@ -39,4 +27,3 @@ export const languageColors: Record<string, string> = {
   Swift: "#F05138",
   Dart: "#00B4AB",
 };
-
