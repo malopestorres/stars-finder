@@ -1,4 +1,5 @@
 import Link from "next/link";
+import StatusItem from "./StatusItem";
 import { formatTime, languageColors } from "@/lib/formatters";
 import type { CardRepositoryProps } from "@/types";
 
@@ -58,35 +59,27 @@ export default function CardRepository({
 
       <footer className="repo-card-footer">
         {repository.language && (
-          <span className="repo-card-meta-item">
-            <span
-              className="repo-card-lang-dot"
-              style={{ backgroundColor: languageColor }}
-              aria-hidden="true"
-            />
-            <span>{repository.language}</span>
-          </span>
+          <StatusItem
+            dotColor={languageColor}
+            className="repo-card-meta-item"
+          >
+            {repository.language}
+          </StatusItem>
         )}
 
-        <span className="repo-card-meta-item">
-          <img
-            src="/images/icon-star.svg"
-            alt=""
-            aria-hidden="true"
-            className="repo-card-meta-icon"
-          />
-          <span>{repository.stargazers_count}</span>
-        </span>
+        <StatusItem
+          icon="/images/icon-star.svg"
+          className="repo-card-meta-item"
+        >
+          {repository.stargazers_count}
+        </StatusItem>
 
-        <span className="repo-card-meta-item">
-          <img
-            src="/images/icon-fork.svg"
-            alt=""
-            aria-hidden="true"
-            className="repo-card-meta-icon"
-          />
-          <span>{repository.forks_count}</span>
-        </span>
+        <StatusItem
+          icon="/images/icon-fork.svg"
+          className="repo-card-meta-item"
+        >
+          {repository.forks_count}
+        </StatusItem>
 
         <span className="repo-card-updated">
           {formatTime(repository.updated_at)}

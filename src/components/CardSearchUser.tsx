@@ -1,4 +1,5 @@
 import Link from "next/link";
+import StatusItem from "./StatusItem";
 import type { CardSearchUserProps } from "../types";
 
 export default function CardSearchUser({
@@ -38,30 +39,15 @@ export default function CardSearchUser({
           {isFull && (
             <footer className="card-search-user-footer">
               <div className="card-search-user-stats">
-                <span>
-                  <img
-                    src="/images/icon-followers.svg"
-                    alt=""
-                    aria-hidden="true"
-                  />
+                <StatusItem icon="/images/icon-followers.svg">
                   {user.followers} Seguidores
-                </span>
-                <span>
-                  <img
-                    src="/images/icon-following.svg"
-                    alt=""
-                    aria-hidden="true"
-                  />
+                </StatusItem>
+                <StatusItem icon="/images/icon-following.svg">
                   {user.following} seguindo
-                </span>
-                <span>
-                  <img
-                    src="/images/icon-repository.svg"
-                    alt=""
-                    aria-hidden="true"
-                  />
+                </StatusItem>
+                <StatusItem icon="/images/icon-repository.svg">
                   {user.public_repos} repositórios
-                </span>
+                </StatusItem>
               </div>
 
               <a
@@ -87,22 +73,15 @@ export default function CardSearchUser({
       {!isFull && (
         <footer className="card-search-user-footer">
           <div className="card-search-user-stats">
-            <span>
-              <img src="/images/icon-followers.svg" alt="" aria-hidden="true" />
+            <StatusItem icon="/images/icon-followers.svg">
               {user.followers} Seguidores
-            </span>
-            <span>
-              <img src="/images/icon-following.svg" alt="" aria-hidden="true" />
+            </StatusItem>
+            <StatusItem icon="/images/icon-following.svg">
               {user.following} seguindo
-            </span>
-            <span>
-              <img
-                src="/images/icon-repository.svg"
-                alt=""
-                aria-hidden="true"
-              />
+            </StatusItem>
+            <StatusItem icon="/images/icon-repository.svg">
               {user.public_repos} repos
-            </span>
+            </StatusItem>
           </div>
 
           <Link
