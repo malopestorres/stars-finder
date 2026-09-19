@@ -15,7 +15,7 @@ export default async function GitHubUserPage({ params }: GitHubUserPageProps) {
   return (
     <main className="container py-4">
       <div className="mb-4">
-        <Link href="/" className="btn-back">
+        <Link href="/" className="btn-back font-bold">
           Voltar
         </Link>
       </div>

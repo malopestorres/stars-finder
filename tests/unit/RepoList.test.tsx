@@ -122,7 +122,7 @@ describe("RepoList", () => {
     );
 
     const externalLink = screen.getByRole("link", {
-      name: /ver no github|acessar repositório/i,
+      name: new RegExp(mockRepositories[0].html_url, "i"),
     });
     expect(externalLink.getAttribute("href")).toBe(
       mockRepositories[0].html_url,
