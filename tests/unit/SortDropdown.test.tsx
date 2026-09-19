@@ -23,10 +23,10 @@ describe("SortDropdown", () => {
     await user.click(trigger);
 
     expect(screen.getByRole("listbox")).toBeTruthy();
-    expect(screen.getByText("Mais estrelas")).toBeTruthy();
-    expect(screen.getByText("Mais forks")).toBeTruthy();
-    expect(screen.getByText("Nome (A - Z)")).toBeTruthy();
-    expect(screen.getByText("Nome (Z - A)")).toBeTruthy();
+    expect(screen.getByRole("option", { name: "Mais estrelas" })).toBeTruthy();
+    expect(screen.getByRole("option", { name: "Mais forks" })).toBeTruthy();
+    expect(screen.getByRole("option", { name: "Nome (A - Z)" })).toBeTruthy();
+    expect(screen.getByRole("option", { name: "Nome (Z - A)" })).toBeTruthy();
   });
 
   it("deve selecionar uma opção e fechar o menu", async () => {
