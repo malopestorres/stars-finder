@@ -15,6 +15,7 @@
 
 .bg-blue-sky {
   background-color: var(--blue-sky);
+    border-bottom: solid 4px #fff;
 }
 body {
   font-family: var(--font-primary);
@@ -22,10 +23,6 @@ body {
 
 .font-extralight {
   font-weight: 200;
-}
-
-.font-italic {
-  font-style: italic;
 }
 
 .font-extralight-italic {
@@ -37,8 +34,8 @@ body {
   font-weight: 400;
 }
 
-.font-medium {
-  font-weight: 500;
+.font-semibold {
+  font-weight: 600;
 }
 
 .font-bold {
@@ -248,7 +245,6 @@ body {
   min-width: 94px;
   padding: 8px 12px;
   font-size: 0.6875rem;
-  font-weight: 800;
   color: #fff;
   background: var(--text-highlight);
   border: 0;
@@ -265,7 +261,6 @@ body {
   padding: 8px 24px;
   font-family: var(--font-primary);
   font-size: 0.8rem; /* 16px */
-  font-weight: 700; /* Inter Bold */
   color: var(--deep-pink);
   background-color: transparent;
   border: 1px solid #e5e7eb;
@@ -373,7 +368,6 @@ body {
   height: 48px;
   font-family: var(--font-primary);
   font-size: 0.875rem;
-  font-weight: 500; /* Inter Medium */
   color: #fff;
   background: var(--text-highlight);
   border: 0;
@@ -503,8 +497,6 @@ body {
   color: transparent;
 }
 
-/* ─── Seção de Repositórios ─── */
-
 .repos-section {
   margin-top: 48px;
 }
@@ -512,7 +504,6 @@ body {
 .repos-title {
   margin: 0 0 24px;
   font-size: 1.875rem;
-  font-weight: 900;
   font-style: italic;
   color: #111827;
 }
@@ -528,8 +519,6 @@ body {
   padding: 0;
 }
 
-/* ─── Card de Repositório ─── */
-
 .repo-card {
   padding: 20px 24px;
   background-color: #fff;
@@ -543,7 +532,32 @@ body {
 }
 
 .repo-card-header {
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.repo-card-link-external {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.repo-card-link-external:hover {
+  color: #4b5563;
+  text-decoration: underline;
+}
+
+.repo-card-link-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
 }
 
 .repo-card-title {
@@ -551,7 +565,6 @@ body {
   align-items: center;
   gap: 8px;
   font-size: 1rem;
-  font-weight: 600;
   color: var(--deep-pink);
   text-decoration: none;
   transition: opacity 0.2s ease;
@@ -571,7 +584,6 @@ body {
 .repo-card-description {
   margin: 0 0 16px;
   font-size: 1.125rem;
-  font-weight: 400;
   color: #6b7280;
   line-height: 1.5;
 }
@@ -588,7 +600,6 @@ body {
   align-items: center;
   gap: 6px;
   font-size: 0.75rem;
-  font-weight: 400;
   color: #6b7280;
 }
 
@@ -609,7 +620,6 @@ body {
 .repo-card-updated {
   margin-left: auto;
   font-size: 0.75rem;
-  font-weight: 400;
   color: #9ca3af;
   white-space: nowrap;
 }
