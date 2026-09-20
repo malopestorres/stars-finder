@@ -8,9 +8,10 @@ import { EVENT_KEYDOWN, EVENT_POINTERDOWN, KEY_ESCAPE } from "@/constants";
 import type { GitHubUser, SearchState } from "../types";
 import CardSearchUser from "./CardSearchUser";
 import SearchBackdrop from "./SearchBackdrop";
-import { SearchContext } from "@/context/SearchContext";
+import { useSearchContext } from "@/context/SearchContext";
 
 export default function Header() {
+  const { registerSearchInput } = useSearchContext();
   const [search, setSearch] = useState<SearchState>({
     isFocus: false,
     status: "idle",
@@ -18,6 +19,11 @@ export default function Header() {
   });
   const searchFormRef = useRef<HTMLFormElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    registerSearchInput(searchInputRef.current);
+  }, [registerSearchInput]);
+
   const closeSearch = useCallback(() => {
     setSearch({ isFocus: false, status: "idle", user: null });
     searchFormRef.current?.reset();
@@ -66,13 +72,8 @@ export default function Header() {
     };
   }, [closeSearch, search.isFocus]);
 
-  const focusSearch = useCallback(() => {
-    searchInputRef.current?.focus();
-  }, []);
-
   return (
-    <SearchContext.Provider value={{ focusSearch }}>
-      <header className="bg-blue-sky">
+    <header className="bg-blue-sky">
       <SearchBackdrop isVisible={search.isFocus} />
 
       <div className="container">
@@ -93,7 +94,10 @@ export default function Header() {
               aria-hidden="true"
             />
             <input
-              ref={searchInputRef}
+              ref={(element) => {
+                searchInputRef.current = element;
+                registerSearchInput(element);
+              }}
               className="form-control font-extralight-italic shadow-sm header-search p-2"
               id="search"
               name="username"
@@ -135,7 +139,6 @@ export default function Header() {
           </form>
         </div>
       </div>
-      </header>
-    </SearchContext.Provider>
+    </header>
   );
 }
