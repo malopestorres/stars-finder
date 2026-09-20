@@ -1,4 +1,10 @@
+"use client";
+
+import { useSearchContext } from "@/context/SearchContext";
+
 export default function HeroBanner() {
+  const { focusSearch } = useSearchContext();
+
   return (
     <section className="hero-banner d-flex flex-column justify-content-center">
       <div className="container text-center">
@@ -13,6 +19,7 @@ export default function HeroBanner() {
         </p>
         <button
           type="button"
+          onClick={focusSearch}
           className="btn btn-dark button-cta d-inline-flex align-items-center justify-content-center gap-2"
         >
           encontre agora um usuário
