@@ -72,7 +72,7 @@ body {
   z-index: 11;
 }
 
-.header-search-form.active .header-search {
+.header-search-form.has-card .header-search {
   border-radius: 10px 10px 0 0;
 }
 
@@ -201,7 +201,7 @@ body {
 
 .card-search-user h2 {
   margin: 0;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 
 .card-search-user p {
@@ -216,7 +216,6 @@ body {
   justify-content: flex-start;
   gap: 16px;
   margin: 16px -22px 0 0;
-  padding-left: 22px;
 }
 
 .status-item {
@@ -405,27 +404,77 @@ body {
 }
 
 @media (max-width: 767px) {
+  .card-search-user-full .card-search-user-profile {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .card-search-user-full .card-search-user-avatar {
+    width: 120px;
+    height: 120px;
+  }
+
+  .card-search-user-full .card-search-user-info {
+    width: 100%;
+  }
+
+  .card-search-user-full .card-search-user-title {
+    justify-content: center;
+  }
+
+  .card-search-user-full .card-search-user-title h2 {
+    font-size: 1.5rem;
+  }
+
+  .card-search-user-full .card-search-user-bio {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .card-search-user-full .card-search-user-email {
+    text-align: center;
+  }
+
+  .card-search-user-full .card-search-user-footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .card-search-user-full .card-search-user-stats {
+    justify-content: center;
+  }
+
+  .card-search-user-full .card-search-user-button-full {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
   .card-search-user {
     padding: 28px 24px 0;
     border-radius: 0 0 10px 10px;
   }
 
   .card-search-user-profile {
-    align-items: flex-start;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
+    gap: 16px;
   }
 
   .card-search-user-avatar {
-    width: 64px;
-    height: 64px;
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
   }
 
   .card-search-user h2 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   .card-search-user-title {
-    margin-bottom: 12px;
+    margin-bottom: 0;
   }
 
   .card-search-user p {
@@ -433,14 +482,23 @@ body {
   }
 
   .card-search-user-footer {
-    align-items: stretch;
+    align-items: center;
     flex-direction: column;
+    gap: 0;
+    margin: 16px 0 0 0;
+  }
+
+  .card-search-user-stats {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 12px;
   }
 
   .card-search-user-button {
-    min-height: 56px;
-    margin: 0 -24px;
-    border-radius: 16px 0 10px 0;
+    width: 100%;
+    min-height: 34px;
+    margin: 0 0 15px;
+    border-radius: 10px;
   }
 }
 
@@ -466,6 +524,12 @@ body {
   background: url("/images/bg-mask.svg") #faf2f2 no-repeat center;
   background-size: contain;
   height: calc(100dvh - var(--header-height));
+}
+
+@media (max-width: 767px) {
+  .hero-banner {
+    background-size: cover;
+  }
 }
 
 .hero-banner h1 {
