@@ -99,4 +99,9 @@ export type RepoListProps = {
 
 export type SearchContextValue = {
   focusSearch: () => void;
+  registerSearchInput: (element: HTMLInputElement | null) => void;
+};
+
+export type SearchProviderProps = {
+  children: ReactNode;
 };
