@@ -2,11 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
+import Link from "next/link";
 import type { FormEvent } from "react";
 import { EVENT_KEYDOWN, EVENT_POINTERDOWN, KEY_ESCAPE } from "@/constants";
 import type { GitHubUser, SearchState } from "../types";
 import CardSearchUser from "./CardSearchUser";
 import SearchBackdrop from "./SearchBackdrop";
+import { SearchContext } from "@/context/SearchContext";
 
 export default function Header() {
   const [search, setSearch] = useState<SearchState>({
@@ -64,19 +66,24 @@ export default function Header() {
     };
   }, [closeSearch, search.isFocus]);
 
+  const focusSearch = useCallback(() => {
+    searchInputRef.current?.focus();
+  }, []);
+
   return (
-    <header className="bg-blue-sky">
+    <SearchContext.Provider value={{ focusSearch }}>
+      <header className="bg-blue-sky">
       <SearchBackdrop isVisible={search.isFocus} />
 
       <div className="container">
         <div className="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 p-3 p-md-4">
-          <a>
+          <Link href="/">
             <img alt="Logo Stars Finder" src="/images/logo.svg" />
-          </a>
+          </Link>
           <form
             ref={searchFormRef}
             role="search"
-            className={`header-search-form ${search.isFocus ? "active" : ""}`}
+            className={`header-search-form ${search.isFocus ? "active" : ""} ${search.status === "success" && search.user ? "has-card" : ""}`}
             onSubmit={handleSearchSubmit}
           >
             <img
@@ -128,6 +135,7 @@ export default function Header() {
           </form>
         </div>
       </div>
-    </header>
+      </header>
+    </SearchContext.Provider>
   );
 }
