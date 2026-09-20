@@ -96,3 +96,7 @@ export type RepoListProps = {
   repositories: GitHubRepository[];
   username: string;
 };
+
+export type SearchContextValue = {
+  focusSearch: () => void;
+};
