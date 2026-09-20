@@ -127,8 +127,9 @@ API_GITHUB_URL=https://api.github.com
 
 ---
 
-## Otimizações de Performance
+## Otimizações Gerais e de Performance
 
+- **Rota 404**: Utilização de rota 404 para exibição de mensagem clara sobre usuário ou repositório não encontrado. Ex: [https://starsfinder.vercel.app/rota-inexistente](https://starsfinder.vercel.app/rota-inexistente)
 - **useMemo e useCallback**: Utilizados para memoizar cálculos de ordenação de listas de repositórios e eventos, evitando renderizações desnecessárias e recálculos a cada nova renderização do componente.
 - **Context API (SearchContext)**: Comunicação entre componentes distantes (como o botão de ação no Banner e o campo de busca no Header).
 - **Prefetch de Rotas**: Pré-carregamento de páginas no evento de hover de links e cards de repositórios utilizando `next/link` e `router.prefetch`.
