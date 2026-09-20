@@ -85,7 +85,9 @@ export type StatusItemProps = {
   className?: string;
 };
 
-export type SortOption = "stars" | "forks" | "name-asc" | "name-desc";
+
+ export type SortOption = "stars" | "forks" | "name-asc" | "name-desc";
+export type SortOptions = { label: string; value: SortOption }[];
 
 export type SortDropdownProps = {
   sortBy: SortOption;

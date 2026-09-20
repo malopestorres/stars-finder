@@ -21,6 +21,12 @@ export const INITIAL_SEARCH_STATE = {
   user: null,
 };
 
+export const OPTIONS = [
+  { label: "Mais estrelas", value: "stars" },
+  { label: "Mais forks", value: "forks" },
+  { label: "Nome (A - Z)", value: "name-asc" },
+  { label: "Nome (Z - A)", value: "name-desc" },
+];
 
 // Referência: https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
 export const languageColors: Record<string, string> = {

@@ -1,15 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { EVENT_MOUSEDOWN } from "@/constants";
-import type { SortDropdownProps, SortOption } from "@/types";
+import { EVENT_MOUSEDOWN, OPTIONS } from "@/constants";
+import type { SortDropdownProps, SortOptions } from "@/types";
 
-const OPTIONS: { label: string; value: SortOption }[] = [
-  { label: "Mais estrelas", value: "stars" },
-  { label: "Mais forks", value: "forks" },
-  { label: "Nome (A - Z)", value: "name-asc" },
-  { label: "Nome (Z - A)", value: "name-desc" },
-];
+
 
 export default function SortDropdown({
   sortBy,
@@ -17,8 +12,8 @@ export default function SortDropdown({
 }: SortDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const selectedLabel = OPTIONS.find((o) => o.value === sortBy)?.label ?? "Ordenar por";
+  const options = OPTIONS as SortOptions;
+  const selectedLabel = options.find((o) => o.value === sortBy)?.label ?? "Ordenar por";
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -63,7 +58,7 @@ export default function SortDropdown({
 
       {isOpen && (
         <ul className="repo-sort-menu" role="listbox">
-          {OPTIONS.map((option) => {
+          {options.map((option) => {
             const isSelected = sortBy === option.value;
 
             return (
