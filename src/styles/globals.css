@@ -733,7 +733,7 @@ body {
 
 .repo-card-title:hover {
   opacity: 0.8;
-  color: var(--deep-pink);
+  color: #000;
 }
 
 .repo-card-icon {
