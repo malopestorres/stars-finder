@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import StatusItem from "./StatusItem";
 import { formatTime } from "@/lib/formatters";
 import { languageColors } from "@/constants";
@@ -8,15 +11,21 @@ export default function CardRepository({
   repository,
   username,
 }: CardRepositoryProps) {
+  const router = useRouter();
   const languageColor =
     (repository.language && languageColors[repository.language]) || "#9ca3af";
+  const repoHref = `/${username}/repo/${repository.name}`;
 
   return (
-    <article className="repo-card">
+    <article
+      className="repo-card"
+      onMouseEnter={() => router.prefetch(repoHref)}
+    >
       <div className="repo-card-header">
         <Link
-          href={`/${username}/repo/${repository.name}`}
+          href={repoHref}
           className="repo-card-title font-semibold"
+          prefetch
         >
           <img
             src="/images/icon-repository.svg"

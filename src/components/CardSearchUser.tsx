@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import StatusItem from "./StatusItem";
 import { GITHUB_BASE_URL } from "@/constants";
 import type { CardSearchUserProps } from "../types";
@@ -8,12 +11,15 @@ export default function CardSearchUser({
   variant = "compact",
   onNavigate,
 }: CardSearchUserProps) {
+  const router = useRouter();
   const isFull = variant === "full";
   const profileUrl = user.html_url ?? `${GITHUB_BASE_URL}/${user.login}`;
+  const userHref = `/${user.login}`;
 
   return (
     <article
       className={`card-search-user ${isFull ? "card-search-user-full" : "shadow"}`}
+      onMouseEnter={() => !isFull && router.prefetch(userHref)}
     >
       <div className="card-search-user-profile">
         <img
@@ -86,9 +92,10 @@ export default function CardSearchUser({
           </div>
 
           <Link
-            href={`/${user.login}`}
+            href={userHref}
             className="btn font-black card-search-user-button"
             onClick={onNavigate}
+            prefetch
           >
             + mais info
           </Link>
