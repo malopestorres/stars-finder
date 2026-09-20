@@ -2,7 +2,7 @@
 
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
-import StatusItem from "../../src/components/StatusItem";
+import StatusItem from "@/components/StatusItem";
 
 describe("StatusItem", () => {
   afterEach(() => {

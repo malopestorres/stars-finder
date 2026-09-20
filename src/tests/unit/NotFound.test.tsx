@@ -2,7 +2,7 @@
 
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
-import NotFound from "../../src/app/not-found";
+import NotFound from "@/app/not-found";
 
 describe("NotFound", () => {
   afterEach(() => {

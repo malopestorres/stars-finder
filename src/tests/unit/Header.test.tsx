@@ -4,7 +4,14 @@ import axios from "axios";
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import Header from "../../src/components/Header";
+import Header from "@/components/Header";
+
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({
+    push: vi.fn(),
+    prefetch: vi.fn(),
+  }),
+}));
 
 vi.mock("axios", () => ({
   default: {

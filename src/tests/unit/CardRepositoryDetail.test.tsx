@@ -2,8 +2,8 @@
 
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
-import CardRepositoryDetail from "../../src/components/CardRepositoryDetail";
-import type { GitHubRepository } from "../../src/types";
+import CardRepositoryDetail from "@/components/CardRepositoryDetail";
+import type { GitHubRepository } from "@/types";
 
 const mockRepository: GitHubRepository = {
   id: 1,

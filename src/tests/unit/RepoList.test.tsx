@@ -1,10 +1,17 @@
 // @vitest-environment jsdom
 
 import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
-import RepoList from "../../src/components/RepoList";
-import { formatTime } from "../../src/lib/formatters";
-import type { GitHubRepository } from "../../src/types";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import RepoList from "@/components/RepoList";
+import { formatTime } from "@/lib/formatters";
+import type { GitHubRepository } from "@/types";
+
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({
+    push: vi.fn(),
+    prefetch: vi.fn(),
+  }),
+}));
 
 const mockRepositories: GitHubRepository[] = [
   {

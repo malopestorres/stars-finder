@@ -1,9 +1,16 @@
 // @vitest-environment jsdom
 
 import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
-import CardSearchUser from "../../src/components/CardSearchUser";
-import type { GitHubUser } from "../../src/types";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import CardSearchUser from "@/components/CardSearchUser";
+import type { GitHubUser } from "@/types";
+
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({
+    push: vi.fn(),
+    prefetch: vi.fn(),
+  }),
+}));
 
 const mockUser: GitHubUser = {
   avatar_url: "https://github.com/malopestorres.png",
