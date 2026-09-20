@@ -11,11 +11,11 @@
 
 <div align="center">
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
-    <img src="screenshots/tela1.png" alt="Tela 1" width="300" />
-    <img src="screenshots/tela2.png" alt="Tela 2" width="300" />
-    <img src="screenshots/tela3.png" alt="Tela 3" width="300" />
-    <img src="screenshots/tela4.png" alt="Tela 4" width="300" />
-     <img src="screenshots/tela5.png" alt="Tela 5" width="300" />
+    <img src="screenshots/tela1.png" style="margin-bottom:10px;" alt="Tela 1" width="300" />
+    <img src="screenshots/tela2.png" style="margin-bottom:10px;" alt="Tela 2" width="300" />
+    <img src="screenshots/tela3.png" style="margin-bottom:10px;" alt="Tela 3" width="300" />
+    <img src="screenshots/tela4.png" style="margin-bottom:10px;" alt="Tela 4" width="300" />
+     <img src="screenshots/tela5.png" style="margin-bottom:10px;" alt="Tela 5" width="300" />
   </div>
 </div>
 
