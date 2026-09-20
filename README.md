@@ -64,8 +64,8 @@ pnpm start
 Para obter os dados da api corretamente, inclusive o email do usuário pesquisado é necessário usar a versão autenticada da api.
 
 ### Como gerar token:
-1. Acesse sua conta no GitHub e vá para **Settings** > **Developer settings** > **Personal access tokens** > **Tokens (classic)** (ou acesse diretamente `https://github.com/settings/tokens`).
-2. Clique em **Generate new token (classic)**.
+1. Acesse sua conta no GitHub e vá para **Settings** > **Developer settings** > **Personal access tokens** > **Fine-grained tokens** ou acesse [https://github.com/settings/tokens](https://github.com/settings/tokens).
+2. Clique em **Generate new token (fine-grained)**.
 3. Defina um nome e um prazo de expiração
 4. Clique em **Generate token** e copie o código gerado.
 
