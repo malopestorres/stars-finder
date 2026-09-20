@@ -21,7 +21,7 @@ export default function CardRepositoryDetail({
       </div>
 
       {repository.description && (
-        <p className="card-search-user-bio repo-detail-description">
+        <p className="repo-card-description">
           {repository.description}
         </p>
       )}
