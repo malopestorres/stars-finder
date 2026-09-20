@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
 import { Inter } from "next/font/google";
 import Header from "../components/Header";
+import { SearchProvider } from "@/context/SearchContext";
 
 export const metadata: Metadata = {
   title: "Stars Finder",
@@ -20,8 +21,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={inter.variable}>
       <body>
-        <Header />
-        <main>{children}</main>
+        <SearchProvider>
+          <Header />
+          <main>{children}</main>
+        </SearchProvider>
       </body>
     </html>
   );
