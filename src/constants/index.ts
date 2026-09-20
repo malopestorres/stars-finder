@@ -8,6 +8,20 @@ export const EVENT_POINTERDOWN = "pointerdown";
 export const EVENT_KEYDOWN = "keydown";
 export const KEY_ESCAPE = "Escape";
 
+
+export const LOADING_STATUS = 'loading';
+export const SUCCESS_STATUS = 'success';
+export const ERROR_STATUS = 'error';
+export const IDLE_STATUS = 'idle';
+
+
+export const INITIAL_SEARCH_STATE = {
+  isFocus: false,
+  status: IDLE_STATUS,
+  user: null,
+};
+
+
 // Referência: https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
 export const languageColors: Record<string, string> = {
   HTML: "#e34c26",

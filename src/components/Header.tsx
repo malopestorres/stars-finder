@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import type { FormEvent } from "react";
-import { EVENT_KEYDOWN, EVENT_POINTERDOWN, KEY_ESCAPE } from "@/constants";
+import { ERROR_STATUS, EVENT_KEYDOWN, EVENT_POINTERDOWN, IDLE_STATUS, INITIAL_SEARCH_STATE, KEY_ESCAPE, LOADING_STATUS, SUCCESS_STATUS } from "@/constants";
 import type { GitHubUser, SearchState } from "../types";
 import CardSearchUser from "./CardSearchUser";
 import SearchBackdrop from "./SearchBackdrop";
@@ -12,11 +12,7 @@ import { useSearchContext } from "@/context/SearchContext";
 
 export default function Header() {
   const { registerSearchInput } = useSearchContext();
-  const [search, setSearch] = useState<SearchState>({
-    isFocus: false,
-    status: "idle",
-    user: null,
-  });
+  const [search, setSearch] = useState<SearchState>(INITIAL_SEARCH_STATE as SearchState);
   const searchFormRef = useRef<HTMLFormElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -25,7 +21,8 @@ export default function Header() {
   }, [registerSearchInput]);
 
   const closeSearch = useCallback(() => {
-    setSearch({ isFocus: false, status: "idle", user: null });
+    setSearch({ isFocus: false, status: IDLE_STATUS, user: null });
+
     searchFormRef.current?.reset();
     searchInputRef.current?.blur();
   }, []);
@@ -37,16 +34,16 @@ export default function Header() {
 
     if (!username) return;
 
-    setSearch((prev) => ({ ...prev, status: "loading" }));
+    setSearch((prev) => ({ ...prev, status: LOADING_STATUS }));
 
     try {
       const { data } = await axios.get<GitHubUser>(
         `/api/users/${encodeURIComponent(username)}`,
       );
 
-      setSearch((prev) => ({ ...prev, status: "success", user: data }));
+      setSearch((prev) => ({ ...prev, status: SUCCESS_STATUS, user: data }));
     } catch {
-      setSearch((prev) => ({ ...prev, status: "error", user: null }));
+      setSearch((prev) => ({ ...prev, status: ERROR_STATUS, user: null }));
     }
   }
 
@@ -84,7 +81,7 @@ export default function Header() {
           <form
             ref={searchFormRef}
             role="search"
-            className={`header-search-form ${search.isFocus ? "active" : ""} ${search.status === "success" && search.user ? "has-card" : ""}`}
+            className={`header-search-form ${search.isFocus ? "active" : ""} ${search.status === SUCCESS_STATUS && search.user ? "has-card" : ""}`}
             onSubmit={handleSearchSubmit}
           >
             <img
@@ -107,7 +104,7 @@ export default function Header() {
                 setSearch((prev) => ({
                   ...prev,
                   isFocus: true,
-                  status: "idle",
+                  status: IDLE_STATUS,
                 }));
               }}
             />
@@ -115,7 +112,7 @@ export default function Header() {
               className="search-submit"
               type="submit"
               aria-label="Pesquisar username"
-              disabled={search.status === "loading"}
+              disabled={search.status === LOADING_STATUS}
             >
               <img
                 src="/images/icon-arrow-search.svg"
@@ -123,15 +120,15 @@ export default function Header() {
                 aria-hidden="true"
               />
             </button>
-            {search.status === "loading" ? (
+            {search.status === LOADING_STATUS ? (
               <div className="typing_loader" role="status">
                 <span className="visually-hidden">Buscando usuário</span>
               </div>
             ) : null}
-            {search.status === "success" && search.user ? (
+            {search.status === SUCCESS_STATUS && search.user ? (
               <CardSearchUser user={search.user} onNavigate={closeSearch} />
             ) : null}
-            {search.status === "error" ? (
+            {search.status === ERROR_STATUS ? (
               <p className="search-feedback text-center">
                 Usuário não encontrado.
               </p>
